@@ -35,27 +35,29 @@
             </div>
     
             <!-- conversazioni -->
-            <div id="chats" class="container chats d-flex flex-row align-items-center">
-                <div class="avatar d-flex flex-row">
-                    <img src="">
+            <div style="cursor: pointer;" id="chats" class="container chats d-flex flex-column ">
+                <div class="avatar d-flex flex-row my-1" v-for="(contact, index) in contacts"
+                @click="chat(index)">
+                    <img :src="contact.avatar">
                     <div class="contactInfo d-flex flex-column">
-                        <h3 style="font-size: 20px;" class="contactName d-flex ">stefan</h3>
-                        <p  style="font-size: 15px;color: rgb(117, 117, 117);"class="msgPreview">ciaobelo</p>
+                        <h3 style="font-size: 20px;" class="contactName d-flex ">{{contact.contactName}}</h3>
+                        <p  style="font-size: 15px;color: rgb(117, 117, 117);"class="msgPreview">aaaaa</p>
                        
                     </div>
                     <p style="color: rgb(117, 117, 117)" class="date">15/07</p>
                 </div>
+
             </div>
         </div>
     
         <div class="mainSection">
             <!-- mainheader -->
-            <div class="mainHeader d-flex container p-3">
+            <div class="mainHeader d-flex container p-3" >
                 <div class="avatar">
-                    <img src="https://media.gettyimages.com/photos/happy-thoughtful-man-with-hands-clasped-in-balcony-picture-id1128017388?s=612x612" alt="">
+                    <img :src="selectedAvatar()">
                 </div>
                 <div class="contactInfo d-flex flex-row justify-content-between ">
-                    <h3 class="contactName my-1">stefan</h3>
+                    <h3 class="contactName my-1">{{selectedName()}}</h3>
                 </div>
                 <div class="buttonContainer buttonContainerContact d-flex flex-row justify-content-around align-items-center">
     
@@ -67,7 +69,25 @@
                 </div>
             </div>
             <!-- chat -->
-            <div class="chat"></div>
+            <div class="chat d-flex flex-column">
+                <div class="chatBox chatTextContact" v-for="(element, index) in contacts[selectedContact].contactText">
+                    <div class="">
+
+
+                    <p style="display: inline;font-size:12px;margin-left: 20px;" class="textDate">15/7</p>
+                    </div>
+                </div>
+
+                <div class="chatBox chatTextUser">
+                    <div class="">
+                        {{contacts[selectedContact].userText}}
+
+                    <p style="display: inline;font-size:12px;margin-left: 20px;" class="textDate">15/7</p>
+                    </div>
+                </div>
+            </div>
+
+
     
     
                 <div class="bottomChatSection d-flex justify-content-center align-items-center justify-content-around ">

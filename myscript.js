@@ -4,7 +4,7 @@ let app = new Vue({
         contacts : [
             {
                 contactName: "annabelle",
-                avatar: "img/annabelle.jpeg",
+                avatar:"img/annabelle.jpeg",
                 message: [
                     {
                         date:"stanotte alle 3:00am",
@@ -52,7 +52,7 @@ let app = new Vue({
             },
             {
                 contactName: "vladino",
-                avatar: "img/vladino.jped",
+                avatar: "img/vladino.jpeg",
                 message: [
                     {
                         date:"oggi alle ",
@@ -74,6 +74,30 @@ let app = new Vue({
                     }
                 ],
             }
-        ]
+        ],
+        selectedContact:"0",  
+
+    },
+    methods:{
+        selectedAvatar: function (index){
+            let selAvatar = this.contacts[this.selectedContact].avatar
+            return selAvatar
+        },
+        selectedName: function (index){
+            let ContactName = this.contacts[this.selectedContact].contactName
+            return ContactName
+        },
+        chat: function (index){    
+            this.selectedContact = "";
+            this.selectedContact = index
+        },
+        selectChat: function(element, index){
+            if(this.chat == index){
+                return true
+            }else{
+                return false
+            }
+        },
+
     }
 })
