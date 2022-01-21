@@ -9,20 +9,20 @@ let app = new Vue({
                     {
                         date:"stanotte alle 3:00am",
                         // messaggio di default
-                        contactText:"mi hai comprato quella spazzola per bambole?",
-                        status:"sent"
+                        text:"mi hai comprato quella spazzola per bambole?",
+                        status: "received"
                     },
                     {
                         date:"stanotte alle 3:00am",
                         // da mostrare quando scrivo qualcosa
-                        userText:"segui l'odore della benzina",
-                        status:"received"
+                        text:"segui l'odore della benzina",
+                        status: "sent"
                     },
                     {
                         date:"stanotte alle 3:00am",
                         // messaggio di default
-                        contactText:"arrivo",
-                        status:"sent"
+                        text:"arrivo",
+                        status: "received"
                     }
                 ],
             },
@@ -33,20 +33,20 @@ let app = new Vue({
                     {
                         date:"oggi alle ",
                         // messaggio di default
-                        contactText:"dove sei, vieni in palestra!",
-                        status:"sent"
+                        text:"dove sei, vieni in palestra!",
+                        status: "received"
                     },
                     {
                         date:"",
                         // messaggio di default
-                        userText:"oggi sono troppo stanco",
-                        status:"received"
+                        text:"oggi sono troppo stanco",
+                        status: "sent"
                     },
                     {
                         date:"",
                         // messaggio di default
-                        contactText:"niente scuse, scendi che andiamo con la mia auto.",
-                        status:"received"
+                        text:"niente scuse, scendi che andiamo con la mia auto.",
+                        status: "received"
                     }
                 ],
             },
@@ -57,25 +57,27 @@ let app = new Vue({
                     {
                         date:"oggi alle ",
                         // messaggio di default
-                        contactText:"hai fatto quella cosa che ti ho chiesto?",
-                        status:"sent"
+                        text:"hai fatto quella cosa che ti ho chiesto?",
+                        status: "received"
                     },
                     {
                         date:"",
                         // messaggio di default
-                        userText:"si vladino, ora non lo sa più nessuno",
-                        status:"received"
+                        text:"si vladino, ora non lo sa più nessuno",
+                        status: "sent"
                     },
                     {
                         date:"",
                         // messaggio di default
-                        contactText:"bravissimo, nessuno deve sapere!",
-                        status:"received"
-                    }
+                        text:"bravissimo, nessuno deve sapere!",
+                        status: "received"
+                    }   
                 ],
             }
         ],
-        selectedContact:"0",  
+        selectedContact:"0",
+        sendMessage:""  
+
 
     },
     methods:{
@@ -97,6 +99,23 @@ let app = new Vue({
             }else{
                 return false
             }
+        },
+        messageFrom: function (index){
+            if (this.contacts[this.selectedContact].message[index].status  == "sent"){
+                return "sent"
+            }else{
+                return "received"
+            }
+        },
+        newMessage: function (){
+            this.contacts[this.selectedContact].message.push({
+                date:"15/7",
+                text:this.sendMessage,
+                status: "sent"
+            })
+            this.sendMessage="";
+
+                       
         },
 
     }

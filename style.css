@@ -86,26 +86,26 @@ cursor: pointer;
 }
 .chat{
 background-image: url(https://st3.depositphotos.com/10953546/14866/v/600/depositphotos_148660113-stock-illustration-technology-social-media-network-link.jpg);
-    height: 80vh;
-
+    display: flex;
+    flex-direction: column;
+    height: 80%;
     padding: 20px;
 }
-.chatBox{
-    width: 100%;
-    height: 40px;
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 5px;
-    margin-bottom:10px ;
-}
-.chatTextUser{
+.sent{
     background-color: rgba(208, 255, 0, 0.274);
-
+    align-self: flex-end;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 50%;
+    margin-top: 10px;
 }
-.chatTextContact{
+.received{
     background-color: rgba(255, 255, 255, 0.274);    
-
-
+    align-self: flex-start;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 50%;
+    margin-top: 10px;
 }
 .bottomChatSection{
     height: 70px;

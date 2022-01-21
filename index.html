@@ -69,21 +69,10 @@
                 </div>
             </div>
             <!-- chat -->
-            <div class="chat d-flex flex-column">
-                <div class="chatBox chatTextContact" v-for="(element, index) in contacts[selectedContact].contactText">
-                    <div class="">
-
-
+            <div class="chat">
+                <div :class="messageFrom(index)" v-for="(selectedMessages, index) in contacts[selectedContact].message">
+                    {{ selectedMessages.text }}
                     <p style="display: inline;font-size:12px;margin-left: 20px;" class="textDate">15/7</p>
-                    </div>
-                </div>
-
-                <div class="chatBox chatTextUser">
-                    <div class="">
-                        {{contacts[selectedContact].userText}}
-
-                    <p style="display: inline;font-size:12px;margin-left: 20px;" class="textDate">15/7</p>
-                    </div>
                 </div>
             </div>
 
@@ -97,7 +86,7 @@
                     <div class="buttons">
                         <i class="fas fa-images"></i>
                     </div>
-                    <input class="chatInput" type="text" placeholder="Scrivi un messaggio">
+                    <input class="chatInput" type="text" placeholder="Scrivi un messaggio" v-model="sendMessage" @keyup.enter="newMessage()">
                     <div class="buttons">
                         <i class="fas fa-microphone"></i>
                     </div>
