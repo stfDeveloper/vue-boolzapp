@@ -7,19 +7,19 @@ let app = new Vue({
                 avatar:"img/annabelle.jpeg",
                 message: [
                     {
-                        date:"stanotte alle 3:00am",
+                        date:"stanotte alle 3:00",
                         // messaggio di default
                         text:"mi hai comprato quella spazzola per bambole?",
                         status: "received"
                     },
                     {
-                        date:"stanotte alle 3:00am",
+                        date:"stanotte alle 3:00",
                         // da mostrare quando scrivo qualcosa
                         text:"segui l'odore della benzina",
                         status: "sent"
                     },
                     {
-                        date:"stanotte alle 3:00am",
+                        date:"stanotte alle 3:00",
                         // messaggio di default
                         text:"arrivo",
                         status: "received"
@@ -110,11 +110,20 @@ let app = new Vue({
         },
         newMessage: function (){
             this.contacts[this.selectedContact].message.push({
-                date: dayjs().format('MM/DD/YY H:mm'),
+                date: dayjs().format('MM/DD/YYYY H:mm'),
                 text:this.sendMessage,
                 status: "sent"
             })
             this.sendMessage="";
+            const reply = this.contacts[this.selectedContact];
+            setTimeout(function(){
+                reply.message.push({
+                date: dayjs().format('MM/DD/YYYY H:mm'),
+                text:"ok",
+                status: "received"
+                },
+                )
+            },1000);
         },
         msgDatePreview: function (contact, index){
             let previewInfo = contact.message[contact.message.length - 1].date
