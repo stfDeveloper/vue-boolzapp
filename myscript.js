@@ -3,8 +3,9 @@ let app = new Vue({
     data: {
         contacts : [
             {
-                contactName: "annabelle",
+                contactName: "Annabelle",
                 avatar:"img/annabelle.jpeg",
+                show : false,
                 message: [
                     {
                         date:"stanotte alle 3:00",
@@ -27,8 +28,9 @@ let app = new Vue({
                 ],
             },
             {
-                contactName: "douglas",
+                contactName: "Douglas",
                 avatar: "img/douglas.webp",
+                show : false,
                 message: [
                     {
                         date:"oggi alle 14:00",
@@ -51,8 +53,9 @@ let app = new Vue({
                 ],
             },
             {
-                contactName: "vladino",
+                contactName: "Vladino",
                 avatar: "img/vladino.jpeg",
+                show : false,
                 message: [
                     {
                         date:"oggi alle 13:00 ",
@@ -80,7 +83,6 @@ let app = new Vue({
         search: "",
     },
    
-       
     methods:{
         selectedAvatar: function (index){
             let selAvatar = this.contacts[this.selectedContact].avatar
@@ -123,7 +125,7 @@ let app = new Vue({
                 status: "received"
                 },
                 )
-            },1000);
+            },1000);    
         },
         msgDatePreview: function (contact, index){
             let previewInfo = contact.message[contact.message.length - 1].date
@@ -134,6 +136,17 @@ let app = new Vue({
             let msgInfo = contact.message[contact.message.length - 1].text
             return msgInfo
         },
+
+
+        // filteredSearch: function (){
+        //     this.contacts.forEach(contact => {
+        //         if(!contact.contactName.toLowerCase().includes(this.search)){                    /da riguardare
+        //             contact.show = true;
+        //         }else{
+        //             contact.show = false;
+        //         }                
+        //     });
+        // },
 
      }//chiusura methods
 })//chiusura vue

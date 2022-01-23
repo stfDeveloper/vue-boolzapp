@@ -92,6 +92,9 @@ font-family: serif;
     height: 100vh;
     background-color: rgba(122, 122, 122, 0.164);
 }
+.hide{
+    display: none !important;
+}
 .chat{
 background-image: url(https://st3.depositphotos.com/10953546/14866/v/600/depositphotos_148660113-stock-illustration-technology-social-media-network-link.jpg);
     display: flex;
