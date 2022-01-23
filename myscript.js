@@ -31,19 +31,19 @@ let app = new Vue({
                 avatar: "img/douglas.webp",
                 message: [
                     {
-                        date:"oggi alle ",
+                        date:"oggi alle 14:00",
                         // messaggio di default
                         text:"dove sei, vieni in palestra!",
                         status: "received"
                     },
                     {
-                        date:"",
+                        date:"oggi alle 14:00",
                         // messaggio di default
                         text:"oggi sono troppo stanco",
                         status: "sent"
                     },
                     {
-                        date:"",
+                        date:"oggi alle 14:00",
                         // messaggio di default
                         text:"niente scuse, scendi che andiamo con la mia auto.",
                         status: "received"
@@ -55,19 +55,19 @@ let app = new Vue({
                 avatar: "img/vladino.jpeg",
                 message: [
                     {
-                        date:"oggi alle ",
+                        date:"oggi alle 13:00 ",
                         // messaggio di default
                         text:"hai fatto quella cosa che ti ho chiesto?",
                         status: "received"
                     },
                     {
-                        date:"",
+                        date:"oggi alle 13:00",
                         // messaggio di default
                         text:"si vladino, ora non lo sa più nessuno",
                         status: "sent"
                     },
                     {
-                        date:"",
+                        date:"oggi alle 13:00",
                         // messaggio di default
                         text:"bravissimo, nessuno deve sapere!",
                         status: "received"
@@ -76,10 +76,11 @@ let app = new Vue({
             }
         ],
         selectedContact:"0",
-        sendMessage:""  
-
-
+        sendMessage:"" ,
+        search: "",
     },
+   
+       
     methods:{
         selectedAvatar: function (index){
             let selAvatar = this.contacts[this.selectedContact].avatar
@@ -109,14 +110,21 @@ let app = new Vue({
         },
         newMessage: function (){
             this.contacts[this.selectedContact].message.push({
-                date:"15/7",
+                date: dayjs().format('MM/DD/YY H:mm'),
                 text:this.sendMessage,
                 status: "sent"
             })
             this.sendMessage="";
+        },
+        msgDatePreview: function (contact, index){
+            let previewInfo = contact.message[contact.message.length - 1].date
+            return previewInfo
 
-                       
+        },
+        lastMsgPreview: function (contact, index){
+            let msgInfo = contact.message[contact.message.length - 1].text
+            return msgInfo
         },
 
-    }
-})
+     }//chiusura methods
+})//chiusura vue
