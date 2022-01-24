@@ -136,7 +136,7 @@ let app = new Vue({
             let previewInfo = contact.message[contact.message.length - 1].date
             return previewInfo
 
-        },
+        }, 
         // mostra ultimo messaggio in chats
         lastMsgPreview: function (contact, index){
             let msgInfo = contact.message[contact.message.length - 1].text
