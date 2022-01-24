@@ -49,7 +49,7 @@
           <input
             class="searchInput"
             v-model="search"
-            @keyup="filteredSearch()"
+            @keyup="filteredSearch(contact, index)"
             type="text"
             placeholder=" Cerca o inizia una nuova chat"
           />
@@ -62,10 +62,10 @@
           class="container chats d-flex flex-column"
         >
           <div
-            class="avatar d-flex flex-row my-1"
+            class="avatar flex-row my-1"
             v-for="(contact, index) in contacts"
             @click="chat(index)"
-            :class="{hide : contact.visible}"
+            :class="{hide : !contact.show}"
           >
             <img :src="contact.avatar" />
             <div class="contactInfo d-flex flex-column">

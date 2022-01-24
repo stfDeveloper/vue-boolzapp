@@ -5,7 +5,7 @@ let app = new Vue({
             {
                 contactName: "Annabelle",
                 avatar:"img/annabelle.jpeg",
-                show : false,
+                show : true,
                 message: [
                     {
                         date:"stanotte alle 3:00",
@@ -30,7 +30,7 @@ let app = new Vue({
             {
                 contactName: "Douglas",
                 avatar: "img/douglas.webp",
-                show : false,
+                show : true,
                 message: [
                     {
                         date:"oggi alle 14:00",
@@ -55,7 +55,7 @@ let app = new Vue({
             {
                 contactName: "Vladino",
                 avatar: "img/vladino.jpeg",
-                show : false,
+                show : true,
                 message: [
                     {
                         date:"oggi alle 13:00 ",
@@ -84,6 +84,7 @@ let app = new Vue({
     },
    
     methods:{
+        // restituisco avatar e nome per contatto
         selectedAvatar: function (index){
             let selAvatar = this.contacts[this.selectedContact].avatar
             return selAvatar
@@ -92,6 +93,7 @@ let app = new Vue({
             let ContactName = this.contacts[this.selectedContact].contactName
             return ContactName
         },
+        // selezione della chat nell'index
         chat: function (index){    
             this.selectedContact = "";
             this.selectedContact = index
@@ -103,6 +105,7 @@ let app = new Vue({
                 return false
             }
         },
+        // posiziona i messaggi in base al received o sent
         messageFrom: function (index){
             if (this.contacts[this.selectedContact].message[index].status  == "sent"){
                 return "sent"
@@ -110,6 +113,7 @@ let app = new Vue({
                 return "received"
             }
         },
+        // funzione che spawna il messaggio scritto in input + il messaggio di risposta
         newMessage: function (){
             this.contacts[this.selectedContact].message.push({
                 date: dayjs().format('MM/DD/YYYY H:mm'),
@@ -127,26 +131,34 @@ let app = new Vue({
                 )
             },1000);    
         },
+        // mostra la data dell'ultimo messaggio
         msgDatePreview: function (contact, index){
             let previewInfo = contact.message[contact.message.length - 1].date
             return previewInfo
 
         },
+        // mostra ultimo messaggio in chats
         lastMsgPreview: function (contact, index){
             let msgInfo = contact.message[contact.message.length - 1].text
             return msgInfo
         },
 
+        // ricerca contatti
+        filteredSearch: function (contact,index){
+            console.log("sei dentro")
+            this.contacts.forEach( contact => {
+                if(contact.contactName.toLowerCase().includes(this.search.toLowerCase())){                    
+                    contact.show = true;
+                }else{
+                    contact.show = false;
+                }                   
+            });
+        },
 
-        // filteredSearch: function (){
-        //     this.contacts.forEach(contact => {
-        //         if(!contact.contactName.toLowerCase().includes(this.search)){                    /da riguardare
-        //             contact.show = true;
-        //         }else{
-        //             contact.show = false;
-        //         }                
-        //     });
-        // },
-
-     }//chiusura methods
+     },//chiusura methods
+    //  scroll automatico all'ultimo messaggio
+     updated: function () {
+        let box = document.querySelector(".chat");
+        box.scrollTop = box.scrollHeight;
+      },
 })//chiusura vue
